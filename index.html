@@ -1,1 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bondfire</title>
+    <link rel="stylesheet" href="style.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1>Bondfire</h1>
+            <input class="searchBar" type="text" placeholder="Search...">
+        </div>
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <span class="material-icons">home</span>
+                </a>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                           
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="material-icons">play_circle</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="material-icons">shopping_cart</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="material-icons">message</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="material-icons">notifications</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="material-icons">person</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-container">
+        
+        <section class="stories-section">
+            <div class="Stories">
+                <ul>
+                    <li class="story-card owner-card">
+                        <div class="owner-img-wrapper">
+                            <img src="imgs/Profile-Picture.jpg" alt="my profile" class="owner-avatar">
+                        </div>
+                        <div class="owner-footer">
+                            <div class="create-story-btn">+</div>
+                            <span class="story-name">Create Story</span>
+                        </div>
+                    </li>
+
+                    <li class="story-card friend-card">
+                        <img src="imgs/Friend-Picture.jpg" alt="Friend Avatar" class="friend-avatar">
+                        <img src="imgs/friend-Picture2.jpg" alt="Story Background" class="story-bg">
+                        <span class="story-name">User 1</span>
+                    </li>
+
+                    <li class="story-card friend-card">
+                        <img src="imgs/Friend-Picture2.jpg" alt="Friend Avatar" class="friend-avatar">
+                        <img src="imgs/Friend-Picture.jpg" alt="Story Background" class="story-bg">
+                        <span class="story-name">User 2</span>
+                    </li>
+
+                    <li class="story-card friend-card">
+                        <img src="imgs/Friend-Picture3.jpg" alt="Friend Avatar" class="friend-avatar">
+                        <img src="imgs/Profile-Picture.jpg" alt="Story Background" class="story-bg">
+                        <span class="story-name">User 3</span>
+                    </li>
+
+                    <li class="story-card friend-card">
+                        <img src="imgs/Profile-Picture.jpg" alt="Friend Avatar" class="friend-avatar">
+                        <img src="imgs/Friend-Picture3.jpg" alt="Story Background" class="story-bg">
+                        <span class="story-name">User 4</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        
+            <hr class="post-divider">
+            <div class="post-action-btn-row">
+                <div class="action-btn live-video-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#f3425f">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-10 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                    </svg>
+                    <span>Live video</span>
+                </div>
+                <div class="action-btn photo-video-btn" id="mediaSelectBtn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#45bd62">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.6 0-1-.4-1V9h14v9c0 .6-.4 1-1 1zm1-11H5V6c0-.6.4-1 1-1h12c.6 0 1 .4 1 1v2zM10 11l-2.5 3.01L14 18l3.5-4.52 3.5 4.52z"/>
+                    </svg>
+                    <span>Photo/video</span>
+                </div>
+                <div class="action-btn feeling-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#f7b928">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+                    </svg>
+                    <span>Feeling/activity</span>
+                </div>
+            </div>
+            <input type="file" id="hiddenFileInput" accept="image/*,video/*" style="display: none;">
+        </section>
+
+        <hr class="post-divider">
+        <section class="Bondfire-card">
+  
+  <div class="card-header-row">
+    <div class="profile-picture active-user">
+    </div>
+    <div class="header-text">
+      <span class="username">benny_musondah</span>
+      <span class="location">Ndola, Zambia</span>
+    </div>
+    <div class="more-options">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="#262626">
+        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="image-display-container">
+    <img src="/imgs/post-content.jpg" alt="Post content" class="post-image">
+  </div>
+
+  <div class="post-action-btn-row">
+    <div class="left-actions">
+      <button class="action-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#02a172">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </button>
+      <button class="action-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#02a172">
+          <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="right-actions">
+      <button class="action-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#02a172">
+          <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="feed-content-container">
+    <span class="likes-count">1,245 likes</span>
+    
+    <p class="post-caption">
+      <span class="username-bold">benny_musondah</span> 
+      Catching beautiful moments out in the open air today! Completely attached to this view.
+    </p>
+    
+    <span class="view-comments">View all 24 comments</span>
+    
+    <p class="user-comment">
+      <span class="username-bold">user1</span> Incredibly stunning shot!
+    </p>
+  </div>
+
+</section>
+
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
