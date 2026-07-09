@@ -1,13 +1,20 @@
-# Bondfire
+# Facechat
 A responsive, single-page global social networking website homepage interface built for educational purposes. This project focuses on replicating a complex, modern web layout with clean structural elements.
 
 ## Live Demo
 
-[View the Live Website](https://index.html/) 
+[View the Live Website]() 
 
 ## Visual Preview
-<!-- TIP: Drag and drop a screenshot or a short screen recording video/GIF right here in this GitHub editor! -->
-![Bondfire Desktop View](src="imgs/Bondf")
+
+
+https://github.com/user-attachments/assets/4045fa4e-91ac-4e8c-b147-f4e1143695fc
+
+
+## Facechat Desktop View
+
+<img width="1914" height="1037" alt="FacechatCapture" src="https://github.com/user-attachments/assets/1c64813f-39f5-4a08-b894-9a3f088fbd20" />
+
 
 ##  Core Features
 *   *Dynamic Navigation Bar:* Fully structured top nav including search spacing, profile layouts, and navigation tabs.
