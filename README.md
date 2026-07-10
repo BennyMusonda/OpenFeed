@@ -8,12 +8,16 @@ A responsive, single-page global social networking website homepage interface bu
 ## Visual Preview
 
 
-https://github.com/user-attachments/assets/4045fa4e-91ac-4e8c-b147-f4e1143695fc
+
+
+https://github.com/user-attachments/assets/a5a70571-c800-4b5f-9886-d183a5959ec1
+
+
 
 
 ## OpenFeed Desktop View
 
-<img width="1914" height="1037" alt="FacechatCapture" src="https://github.com/user-attachments/assets/1c64813f-39f5-4a08-b894-9a3f088fbd20" />
+<img width="2554" height="1396" alt="OpenFeed-DesktopView" src="https://github.com/user-attachments/assets/4579cd40-c3bd-4fcb-b12d-ff9bc0e7e2be" />
 
 
 ##  Core Features
