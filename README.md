@@ -19,6 +19,9 @@ https://github.com/user-attachments/assets/a5a70571-c800-4b5f-9886-d183a5959ec1
 
 <img width="2554" height="1396" alt="OpenFeed-DesktopView" src="https://github.com/user-attachments/assets/4579cd40-c3bd-4fcb-b12d-ff9bc0e7e2be" />
 
+## OpenFeed Mobile View
+<img width="2545" height="1430" alt="OpenFeed-MobileView" src="https://github.com/user-attachments/assets/a6b939a0-e875-4270-87f6-272b357ef4b4" />
+
 
 ##  Core Features
 *   *Dynamic Navigation Bar:* Fully structured top nav including search spacing, profile layouts, and navigation tabs.
