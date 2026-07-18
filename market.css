@@ -94,7 +94,11 @@ body {
     transition: color 0.2s ease;
 }
 
-
+.market-container[
+    display: flx;
+}
+.market-title h1{
+    color: #02a172;
 
 
 /* --- MEDIA QUERIES --- */
