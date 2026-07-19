@@ -131,8 +131,4 @@ body {
     .action-btn {
         padding: 12px;
     }
-    .Stories li.story-card {
-        height: 150px;
-        width: 90px;
-    }
 }
