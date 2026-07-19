@@ -123,12 +123,3 @@ body {
         justify-content: space-around;
     }
 }
-
-@media (max-width: 480px) {
-    .action-btn span {
-        display: none; 
-    }
-    .action-btn {
-        padding: 12px;
-    }
-}
