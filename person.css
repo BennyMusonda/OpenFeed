@@ -1,0 +1,118 @@
+/* --- GLOBAL STYLES --- */
+body {
+    background: #f0f2f5;
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    color: #1c1e21;
+}
+
+.main-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+
+/* --- NAVIGATION BAR --- */
+.navbar {
+    align-items: center;
+    background: #02a172;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar h1 {
+    font-size: 24px;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.searchBar {
+    border: none;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    width: 180px;
+    color: white;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.searchBar::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.searchBar:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+}
+
+.nav-item {
+    width: 50px;
+    height: 45px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link.active .material-icons {
+    color: #ffffff;
+}
+
+.nav-link .material-icons {
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.2s ease;
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .nav-left {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .searchBar {
+        width: 60%;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: space-around;
+    }
+}
