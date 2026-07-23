@@ -94,6 +94,284 @@ body {
     transition: color 0.2s ease;
 }
 
+:root {
+  --bg-primary: #ffffff;
+  --bg-hover: #f2f3f5;
+  --text-main: #050505;
+  --text-secondary: #65676b;
+  --fb-blue: #1877f2;
+  --fb-blue-light: #e7f3ff;
+  --border-color: #ced0d4;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Container */
+.notification-container {
+  width: 100%;
+  max-width: 500px;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+/* Header */
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 16px;
+}
+
+.notification-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.mark-all-btn {
+  background: none;
+  border: none;
+  color: var(--fb-blue);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.mark-all-btn:hover {
+  background-color: var(--bg-hover);
+}
+
+/* Tabs */
+.notification-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.tab-btn:hover {
+  background-color: var(--bg-hover);
+}
+
+.tab-btn.active {
+  background-color: var(--fb-blue-light);
+  color: var(--fb-blue);
+}
+
+/* List Items */
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 16px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 8px;
+  margin: 0 8px;
+}
+
+.notification-item:hover {
+  background-color: var(--bg-hover);
+}
+
+/* Avatars & Badges */
+.avatar-container {
+  position: relative;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.badge-icon {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Content */
+.notification-content {
+  flex-grow: 1;
+  padding-right: 24px;
+}
+
+.notification-text {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text-main);
+}
+
+.notification-text strong {
+  font-weight: 600;
+}
+
+.notification-time {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: block;
+}
+
+/* Inline Action Buttons (Friend Requests) */
+.inline-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.confirm-btn, .delete-request-btn {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.confirm-btn {
+  background-color: var(--fb-blue);
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #1466d6;
+}
+
+.delete-request-btn {
+  background-color: #e4e6eb;
+  color: var(--text-main);
+}
+
+.delete-request-btn:hover {
+  background-color: #d8dadf;
+}
+
+/* Unread State Indicator */
+.unread-dot {
+  position: absolute;
+  right: 16px;
+  top: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  background-color: var(--fb-blue);
+  border-radius: 50%;
+  display: none;
+}
+
+.notification-item.unread .unread-dot {
+  display: block;
+}
+
+.notification-item.unread .notification-time {
+  color: var(--fb-blue);
+  font-weight: 600;
+}
+
+/* Dropdown Actions Menus */
+.notification-actions {
+  position: absolute;
+  right: 32px;
+  top: calc(50% - 16px);
+  opacity: 0;
+  z-index: 10;
+}
+
+.notification-item:hover .notification-actions,
+.notification-actions:focus-within {
+  opacity: 1;
+}
+
+.menu-trigger {
+  background: white;
+  border: 1px solid var(--border-color);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -1px;
+}
+
+.menu-trigger:hover {
+  background-color: var(--bg-hover);
+}
+
+.action-dropdown {
+  position: absolute;
+  right: 0;
+  top: 36px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: 1px solid var(--border-color);
+  width: 180px;
+  overflow: hidden;
+}
+
+.action-dropdown button {
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.action-dropdown button:hover {
+  background-color: var(--bg-hover);
+}
+
+.hidden {
+  display: none;
+}
+
 /* --- MEDIA QUERIES --- */
 @media (max-width: 768px) {
     .navbar {
