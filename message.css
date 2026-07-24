@@ -161,7 +161,7 @@ body {
   align-self: flex-start;
 }
 .message.sent {
-  background-color: #0084ff;
+  background-color: #02a172;
   color: white;
   align-self: flex-end;
 }
