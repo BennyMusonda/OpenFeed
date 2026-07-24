@@ -94,6 +94,7 @@ body {
     transition: color 0.2s ease;
 }
 
+
 /* Card Container */
 .profile-container {
     background: #ffffff;
@@ -174,7 +175,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #1d9bf0;
+    background-color: #02a172;
     color: #ffffff;
 }
 
