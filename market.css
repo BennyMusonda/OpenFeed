@@ -94,6 +94,163 @@ body {
     transition: color 0.2s ease;
 }
 
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+/* Master Layout using Flexbox */
+.market-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Sidebar Flex Constraints */
+.market-sidebar {
+  flex: 0 0 250px; /* Do not grow, do not shrink, fix width to 250px */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  height: fit-content;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.market-sidebar h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.filter-list {
+  list-style: none;
+}
+
+.filter-btn {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.filter-btn:hover, 
+.filter-btn.active {
+  background-color: #e4e6eb;
+  font-weight: 600;
+}
+
+/* Market Feed Flex Constraints */
+.market-feed {
+  flex: 1; /* Take up all remaining space */
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  gap: 20px;
+}
+
+/* Individual Product Cards */
+.product-card {
+  flex: 1 1 calc(33.333% - 20px); /* Basis is roughly 1/3 of row minus the gap */
+  min-width: 250px; /* Prevents cards from getting too squished */
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column; /* Stack image and info vertically */
+}
+
+.product-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.product-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Forces the content space to expand evenly */
+}
+
+.product-title {
+  font-size: 1.1rem;
+  color: #050505;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1877f2; /* Social tech blue */
+  margin-bottom: 5px;
+}
+
+.product-seller {
+  font-size: 0.85rem;
+  color: #65676b;
+  margin-bottom: 15px;
+}
+
+/* Actions Row at bottom of card */
+.card-actions {
+  margin-top: auto; /* Pushes buttons to the very bottom of the card content */
+  display: flex;
+  gap: 10px;
+}
+
+.btn-msg {
+  flex: 1;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-msg:hover {
+  background-color: #166fe5;
+}
+
+.btn-fav {
+  background-color: #e4e6eb;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #050505;
+}
+
+.btn-fav:hover {
+  background-color: #d8dadf;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .market-container {
+    flex-direction: column; /* Stack sidebar on top of feed on mobile */
+  }
+  .market-sidebar {
+    flex: 1 1 100%;
+  }
+}
+
 /* --- MEDIA QUERIES --- */
 @media (max-width: 768px) {
     .navbar {
