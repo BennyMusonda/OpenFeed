@@ -52,10 +52,72 @@
         </ul>
     </nav>
 
-  <main class="main-container">
-    <div class="main-title">
-      Market center coming soon
-    </div>
+   <!-- Main Market Section Container -->
+  <main class="market-container">
+    
+    <!-- Sidebar for Filters -->
+    <aside class="market-sidebar">
+      <h3>Categories</h3>
+      <ul class="filter-list">
+        <li><button class="filter-btn active" data-category="all">All Items</button></li>
+        <li><button class="filter-btn" data-category="electronics">Electronics</button></li>
+        <li><button class="filter-btn" data-category="clothing">Clothing</button></li>
+        <li><button class="filter-btn" data-category="books">Books</button></li>
+      </ul>
+    </aside>
+
+    <!-- Product Grid Feed -->
+    <section class="market-feed">
+      
+      <!-- Card 1 -->
+      <div class="product-card" data-category="electronics">
+        <div class="product-image">
+          <img src="https://placeholder.com" alt="Wireless Headphones">
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">Wireless Headphones</h4>
+          <p class="product-price">$99.00</p>
+          <p class="product-seller">Posted by: @alex_tech</p>
+          <div class="card-actions">
+            <button class="btn-msg">Message Seller</button>
+            <button class="btn-fav">♥</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card" data-category="clothing">
+        <div class="product-image">
+          <img src="https://placeholder.com" alt="Vintage Jacket">
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">Vintage Denim Jacket</h4>
+          <p class="product-price">$45.00</p>
+          <p class="product-seller">Posted by: @vintage_vibes</p>
+          <div class="card-actions">
+            <button class="btn-msg">Message Seller</button>
+            <button class="btn-fav">♥</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card" data-category="books">
+        <div class="product-image">
+          <img src="https://placeholder.com" alt="Sci-Fi Novel">
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">Sci-Fi Novel Collection</h4>
+          <p class="product-price">$15.00</p>
+          <p class="product-seller">Posted by: @bookworm99</p>
+          <div class="card-actions">
+            <button class="btn-msg">Message Seller</button>
+            <button class="btn-fav">♥</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
   </main>
 
    <script src="market.js" defer></script>
