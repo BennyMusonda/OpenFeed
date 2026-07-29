@@ -1,118 +1,138 @@
-<!-- Leaflet Map JavaScript dependencies -->
-    <script src="https://unpkg.com" crossorigin=""></script>
+// Initialize map parameters, starting out wide to emphasize a global layout view
+const map = L.map('map', {
+    center:,
+    zoom: 2,
+    minZoom: 2,
+    maxZoom: 18,
+    worldCopyJump: true // Enables seamless wrapping when scrolling around across edges
+});
 
-        // Global structural application states
-        let map;
-        let userMarker;
-        let userAccuracyCircle;
-        let isFirstLoad = true;
+// Attach beautiful OpenStreetMap Map tiles with an elegant modern layout
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+}).addTo(map);
 
-        // Initialize the geographic canvas layout
-        function initMap() {
-            // Default setup pointing to global view coordinates before tracking hooks activate
-            map = L.map('map').setView([0, 0], 2);
+// Keep track of active interactive state pins
+let currentMarker = null;
 
-            // Fetch and render open street map standard layout layers
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
+// --- Global Spinning Effect Variables & Logic ---
+let spinInterval = null;
+const spinVelocity = 0.3; // Degree movement jump per ticking frame
+const frameRateMs = 40;   // Interval tick rate (~25 frames per second drift animation)
+let interactionTimeout = null;
 
-            // Establish real-time persistent browser hardware tracking loops
-            startLiveTracking();
-        }
+// Starts or resumes the automated horizontal map movement simulation
+function startMapSpinning() {
+    if (spinInterval) return; // Prevent creating duplicate system loops
+    
+    spinInterval = setInterval(() => {
+        const currentCenter = map.getCenter();
+        // Shift longitude smoothly to create a horizontal spinning/rotating illusion
+        let newLng = currentCenter.lng + spinVelocity;
+        
+        // Wrap coordinates to stay within realistic bounds
+        if (newLng > 180) newLng -= 360;
+        
+        map.setView([currentCenter.lat, newLng], map.getZoom(), { animate: false });
+    }, frameRateMs);
+    
+    document.getElementById('status-badge').className = "badge spinning";
+    document.getElementById('status-badge').textContent = "Spinning Globe";
+}
 
-        // Establish connection hooks directly into hardware Geolocation APIs
-        function startLiveTracking() {
-            if (!navigator.geolocation) {
-                updateUIError("Your browser or device layout lacks hardware location engines.");
-                return;
-            }
+// Halts the horizontal spinning automation completely
+function stopMapSpinning() {
+    if (spinInterval) {
+        clearInterval(spinInterval);
+        spinInterval = null;
+    }
+    document.getElementById('status-badge').className = "badge tracking";
+    document.getElementById('status-badge').textContent = "Tracking Active";
+}
 
-            // Real-time position watching thread
-            navigator.geolocation.watchPosition(
-                handlePositionSuccess, 
-                handlePositionError, 
-                {
-                    enableHighAccuracy: true, // Forces precise GPS tracking metrics
-                    timeout: 10000,           // Times out stream loops after 10 seconds of freeze
-                    maximumAge: 0             // Prevents processing cached location data
+// Automatically pauses spinning during user interaction and triggers a resume countdown
+function handleUserInteraction() {
+    stopMapSpinning();
+    clearTimeout(interactionTimeout);
+    
+    // Resume spinning if no user activity happens for 8 seconds
+    interactionTimeout = setTimeout(() => {
+        startMapSpinning();
+    }, 8000);
+}
+
+// Bind native Leaflet listeners to detect user manual movement manipulations
+map.on('movestart', () => {
+    // Check if the movement was caused by user dragging, not the automated system script
+    if (!spinInterval) clearTimeout(interactionTimeout); 
+});
+map.on('dragstart', stopMapSpinning);
+map.on('zoomstart', stopMapSpinning);
+map.on('mousedown', stopMapSpinning);
+
+
+// --- Operational Geocode Location Search Query Execution handler ---
+const searchForm = document.getElementById('map-search-form');
+const searchInput = document.getElementById('search-input');
+const locationDisplay = document.getElementById('location-display');
+
+searchForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop page from refreshing on form submission
+    
+    const query = searchInput.value.trim();
+    if (!query) return;
+
+    // Halt spinning immediately during programmatic lookups
+    stopMapSpinning();
+    clearTimeout(interactionTimeout);
+    
+    locationDisplay.textContent = `Searching for "${query}"...`;
+
+    // Connect to OpenStreetMap Nominatim Open Web Service to convert string to coordinate maps
+    const url = `https://openstreetmap.org{encodeURIComponent(query)}&limit=1`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                const target = data[0];
+                const lat = parseFloat(target.lat);
+                const lon = parseFloat(target.lon);
+                const displayName = target.display_name;
+
+                // Adjust map zoom level selectively based on geographical entity category type
+                const properZoom = target.type === 'country' ? 5 : 10;
+
+                // Move map directly over the targeted results area
+                map.setView([lat, lon], properZoom);
+
+                // Clean up prior marker asset references
+                if (currentMarker) {
+                    map.removeLayer(currentMarker);
                 }
-            );
-        }
 
-        // Processing loop handling newly streamed coordination snapshots
-        function handlePositionSuccess(position) {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            const accuracy = position.coords.accuracy;
+                // Place a marker pinpoint over the located geographical coordinates
+                currentMarker = L.marker([lat, lon]).addTo(map)
+                    .bindPopup(`<b>${target.name || 'Location Result'}</b><br><span style="font-size:12px;">${displayName}</span>`)
+                    .openPopup();
 
-            // Reverse Geocoding via open-source communities to extract region titles
-            fetch(`https://openstreetmap.org{lat}&lon=${lng}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Extract clear street/neighborhood context
-                    const areaName = data.address.suburb || data.address.neighbourhood || data.address.city || "New Shared Region";
-                    const fullAddress = data.display_name;
-                    
-                    document.getElementById('location-display').innerText = `Entered: ${areaName} (${lat.toFixed(4)}, ${lng.toFixed(4)})`;
-                    document.getElementById('status-badge').innerText = "Live Active Status";
-                    document.getElementById('status-badge').style.background = "#d4edda";
-                    document.getElementById('status-badge').style.color = "#155724";
-
-                    // Bind context bubbles to map markers
-                    updateMarkerOnMap(lat, lng, accuracy, `<b>You entered here!</b><br>${areaName}`);
-                })
-                .catch(() => {
-                    document.getElementById('location-display').innerText = `Coordinates: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
-                    updateMarkerOnMap(lat, lng, accuracy, "<b>Your Position</b>");
-                });
-        }
-
-        // Update visual marker assets on live view adjustments
-        function updateMarkerOnMap(lat, lng, accuracy, popupMessage) {
-            if (userMarker) {
-                // Shift properties dynamically if element assets exist
-                userMarker.setLatLng([lat, lng]).setPopupContent(popupMessage);
-                userAccuracyCircle.setLatLng([lat, lng]).setRadius(accuracy);
+                // UI Display string verification adjustment feedback updates
+                locationDisplay.textContent = target.name || displayName;
+                searchInput.value = ''; // Clean form fields inputs
+                
+                // Allow world rotation script parameters to restart automatically shortly after focusing target
+                interactionTimeout = setTimeout(startMapSpinning, 10000);
             } else {
-                // Initialize elements when coordinates arrive for the first time
-                userMarker = L.marker([lat, lng]).addTo(map).bindPopup(popupMessage).openPopup();
-                userAccuracyCircle = L.circle([lat, lng], { radius: accuracy, opacity: 0.3 }).addTo(map);
+                locationDisplay.textContent = "Location not found. Try another query.";
+                interactionTimeout = setTimeout(startMapSpinning, 4000);
             }
+        })
+        .catch(err => {
+            console.error("Geocoding transaction process failure exception:", err);
+            locationDisplay.textContent = "Connection error. Please try again.";
+            interactionTimeout = setTimeout(startMapSpinning, 4000);
+        });
+});
 
-            // Automatically pan map view instantly to center your newest coordinates
-            if (isFirstLoad) {
-                map.setView([lat, lng], 16); // Snap to neighborhood layout closeness zoom
-                isFirstLoad = false;
-            } else {
-                map.panTo([lat, lng]);
-            }
-        }
-
-        // Handling structural failure anomalies safely
-        function handlePositionError(error) {
-            let message = "Unable to determine your precise zone coordinates.";
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    message = "Location tracking request denied by user permission rules.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    message = "Network issues or poor signal connection broke location data streams.";
-                    break;
-                case error.TIMEOUT:
-                    message = "Location tracking request timed out.";
-                    break;
-            }
-            updateUIError(message);
-        }
-
-        function updateUIError(errorMessage) {
-            document.getElementById('location-display').innerText = errorMessage;
-            document.getElementById('status-badge').innerText = "Offline/Error";
-            document.getElementById('status-badge').style.background = "#f8d7da";
-            document.getElementById('status-badge').style.color = "#721c24";
-        }
-
-        // Trigger map allocation pipeline execution on document presentation lifecycle events
-        window.onload = initMap;
+// Kickstart automated spinning configuration sequence right at boot runtime initialization
+startMapSpinning();
