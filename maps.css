@@ -1,6 +1,6 @@
 /* Footer Wrapper */
 .main-footer {
-    background-color: var(--bg-dark);
+    background-color:   #02a172;
     padding: 60px 0 20px 0;
     border-top: 1px solid var(--border-color);
 }
