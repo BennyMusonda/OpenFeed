@@ -98,23 +98,72 @@
         <button class="tab-btn" data-tab="about">About</button>
     </div>
 
-    <!-- Tab Content Dynamic Area -->
-    <div class="tab-content-wrapper">
-        <div class="tab-panel active" id="posts">
-            <div class="post-grid">
-                <div class="post-card">Post 1</div>
-                <div class="post-card"> Post 2</div>
-                <div class="post-card"> Posts 3.</div>
-            </div>
+   <!-- Tab Content Dynamic Area --> 
+<div class="tab-content-wrapper"> 
+  
+  <!-- Posts Tab Panel -->
+  <div class="tab-panel active" id="posts"> 
+    <div class="post-grid"> 
+      
+      <div class="post-card">
+        <div class="post-header">
+          <img src="avatar.jpg" alt="User Avatar" class="post-avatar">
+          <div class="post-meta">
+            <span class="post-author">Your Name</span>
+            <span class="post-time">2 hours ago</span>
+          </div>
         </div>
-        <div class="tab-panel" id="about">
-            <div class="about-card">
-                <h3>Biography</h3>
-                <p>Building good web apps with remarkable user experience.</p>
-            </div>
+        <div class="post-body">
+          <p>Just launched my new web app! Focused heavily on micro-interactions and smooth user experience. Let me know what you think!</p>
         </div>
+        <div class="post-actions">
+          <button class="action-btn"> 24</button>
+          <button class="action-btn"> 5</button>
+        </div>
+      </div> 
+
+      <div class="post-card"> 
+        <div class="post-header">
+          <img src="avatar.jpg" alt="User Avatar" class="post-avatar">
+          <div class="post-meta">
+            <span class="post-author">Your Name</span>
+            <span class="post-time">Yesterday</span>
+          </div>
+        </div>
+        <div class="post-body">
+          <p>Clean code is good, but clean user experience is vital. Always design for the user first.</p>
+        </div>
+        <div class="post-actions">
+          <button class="action-btn"> 42</button>
+          <button class="action-btn"> 12</button>
+        </div>
+      </div>
+
+    </div> 
+  </div> 
+
+  <!-- Photos Tab Panel -->
+  <div class="tab-panel" id="photos">
+    <div class="photo-grid">
+      <div class="photo-item"><img src="photo1.jpg" alt="Workspace setup"></div>
+      <div class="photo-item"><img src="photo2.jpg" alt="Tech conference"></div>
+      <div class="photo-item"><img src="photo3.jpg" alt="Design wireframe"></div>
+      <div class="photo-item"><img src="photo4.jpg" alt="Team hackathon"></div>
+      <div class="photo-item"><img src="photo5.jpg" alt="Coffee and code"></div>
+      <div class="photo-item"><img src="photo6.jpg" alt="UI component sketch"></div>
     </div>
+  </div>
+
+  <!-- About Tab Panel -->
+  <div class="tab-panel" id="about"> 
+    <div class="about-card"> 
+      <h3>Biography</h3> 
+      <p>Building good web apps with remarkable user experience.</p> 
+    </div> 
+  </div> 
+
 </div>
+
   </main>
 
    <script src="person.js" defer></script>
