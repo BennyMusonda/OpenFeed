@@ -3,121 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Videos Feed</title>
-  <link rel="stylesheet" href="./videos.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>Reels Feed</title>
+  <link rel="stylesheet" href="videos.css">
+  <!-- Feather Icons for clean UI symbols -->
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="nav-left">
-      <h1>OpenFeed</h1>
-      <input class="searchBar" type="text" placeholder="Search...">
-    </div>
-    <ul class="nav-links">
-      <li class="nav-item">
-        <a href="index.html" class="nav-link active">
-          <span class="material-icons">home</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="./videos.html" class="nav-link">
-          <span class="material-icons">play_circle</span>
-        </a>
-      </li>
+  <!-- Main Feed Container -->
+  <main class="reels-container">
 
-      <li class="nav-item">
-        <a href="./market.html" class="nav-link">
-          <span class="material-icons">shopping_cart</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="message.html" class="nav-link">
-          <span class="material-icons">message</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="notication.html" class="nav-link">
-          <span class="material-icons">notifications</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="person.html" class="nav-link">
-          <span class="material-icons">person</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+    <!-- REEL ITEM 1 -->
+    <section class="reel">
+      <!-- Background Video -->
+      <video 
+        class="reel-video" 
+        src="vids/reel2.mp4" 
+        loop 
+        muted 
+        autoplay 
+        playsinline>
+      </video>
 
-  <main class="video-feed-container">
-    
-    <div class="reel">
-      <video class="reel-video" src="./vids/reel1.mp4" loop playsinline ></video>
-      
-      <button class="play-pause-btn" onclick="togglePlay(this)">
-        <span class="material-symbols-outlined">play_arrow</span>
-      </button>
+      <!-- Gradient Overlay for Contrast -->
+      <div class="reel-overlay"></div>
+
+      <!-- Left Bottom Info (User & Caption) -->
+      <div class="reel-content">
+        <div class="user-info">
+          <img src="imgs/Friend-Picture.jpg" alt="Profile" class="avatar">
+          <span class="username">benny_musondah</span>
+          <button class="follow-btn">Follow</button>
+        </div>
+        
+        <p class="caption">so eneretic wow!! #nature #vibes #outdoors</p>
+        
+        <div class="audio-track">
+          <i data-feather="music" class="music-icon"></i>
+          <div class="audio-ticker">
+            <span>benny_musondah • Original Audio</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Action Sidebar -->
+      <div class="reel-actions">
+        <button class="action-btn">
+          <i data-feather="heart"></i>
+          <span>124.5K</span>
+        </button>
+        
+        <button class="action-btn">
+          <i data-feather="message-circle"></i>
+          <span>1,820</span>
+        </button>
+        
+        <button class="action-btn">
+          <i data-feather="send"></i>
+          <span>Share</span>
+        </button>
+        
+        <button class="action-btn">
+          <i data-feather="bookmark"></i>
+        </button>
+
+        <div class="audio-disc">
+          <img src="imgs/headphones.jpg" alt="Audio Disc">
+        </div>
+      </div>
+    </section>
+
+    <!-- REEL ITEM 2 -->
+    <section class="reel">
+      <video 
+        class="reel-video" 
+        src="vids/reel1.mp4" 
+        loop 
+        muted 
+        playsinline>
+      </video>
+
+      <div class="reel-overlay"></div>
+
+      <div class="reel-content">
+        <div class="user-info">
+          <img src="imgs/Post-Content2.png" alt="Profile" class="avatar">
+          <span class="username">katongo_jnr</span>
+          <button class="follow-btn">Follow</button>
+        </div>
+        
+        <p class="caption">very nice eish #zambia #lusaka #cyberpunk</p>
+        
+        <div class="audio-track">
+          <i data-feather="music" class="music-icon"></i>
+          <div class="audio-ticker">
+            <span>Witty Beats • Night City</span>
+          </div>
+        </div>
+      </div>
 
       <div class="reel-actions">
-        <button class="action-btn" onclick="handleLike(this)">
-          <span class="material-symbols-outlined">favorite</span>
-          <span class="action-text">10K</span>
-        </button>
         <button class="action-btn">
-          <span class="material-symbols-outlined">visibility</span>
-          <span class="action-text">115K</span>
+          <i data-feather="heart"></i>
+          <span>89.2K</span>
         </button>
+        
         <button class="action-btn">
-          <span class="material-symbols-outlined">chat_bubble</span>
-          <span class="action-text">192</span>
+          <i data-feather="message-circle"></i>
+          <span>942</span>
         </button>
+        
         <button class="action-btn">
-          <span class="material-symbols-outlined">bar_chart</span>
-          <span class="action-text">1M</span>
+          <i data-feather="send"></i>
+          <span>Share</span>
         </button>
-        <button class="action-btn" onclick="handleShare()">
-          <span class="material-symbols-outlined">share</span>
-          <span class="action-text">230</span>
+        
+        <button class="action-btn">
+          <i data-feather="bookmark"></i>
         </button>
-      </div>
-    </div>
 
-    <div class="reel">
-      <video class="reel-video" src="./vids/reel1.mp4" loop playsinline ></video>
-      
-      <button class="play-pause-btn" onclick="togglePlay(this)">
-        <span class="material-symbols-outlined">play_arrow</span>
-      </button>
-
-      <div class="reel-actions">
-        <button class="action-btn" onclick="handleLike(this)">
-          <span class="material-symbols-outlined">favorite</span>
-          <span class="action-text">90</span>
-        </button>
-        <button class="action-btn">
-          <span class="material-symbols-outlined">visibility</span>
-          <span class="action-text">9.1K</span>
-        </button>
-        <button class="action-btn">
-          <span class="material-symbols-outlined">chat_bubble</span>
-          <span class="action-text">89</span>
-        </button>
-        <button class="action-btn">
-          <span class="material-symbols-outlined">bar_chart</span>
-          <span class="action-text">20K</span>
-        </button>
-        <button class="action-btn" onclick="handleShare()">
-          <span class="material-symbols-outlined">share</span>
-          <span class="action-text">112</span>
-        </button>
+        <div class="audio-disc">
+          <img src="imgs/Post-Content1.png" alt="Audio Disc">
+        </div>
       </div>
-    </div>
+    </section>
 
   </main>
 
-  <script src="./videos.js" defer></script>
+  <!-- Initialize Feather Icons -->
+  <script>
+    feather.replace();
+  </script>
 </body>
 </html>
