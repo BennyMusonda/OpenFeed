@@ -237,3 +237,55 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* Mute/Unmute Center Overlay Icon */
+.mute-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+  z-index: 10;
+}
+
+.mute-indicator.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.mute-indicator svg {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+}
+
+/* Double Tap Floating Heart */
+.double-tap-heart {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0);
+  color: #ff3040;
+  pointer-events: none;
+  z-index: 10;
+  animation: heartPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.double-tap-heart svg {
+  width: 80px;
+  height: 80px;
+  fill: #ff3040;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+}
+
+@keyframes heartPop {
+  0% { transform: translate(-50%, -50%) scale(0) rotate(-15deg); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.2) rotate(0deg); opacity: 1; }
+  100% { transform: translate(-50%, -100px) scale(1) rotate(15deg); opacity: 0; }
+}
