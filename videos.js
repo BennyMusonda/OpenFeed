@@ -1,89 +1,124 @@
-// Select all videos inside our reel modules
-const videos = document.querySelectorAll('.reel-video');
+document.addEventListener("DOMContentLoaded", () => {
+  const reels = document.querySelectorAll(".reel");
 
-// 1. Intersection Observer to manage Auto-Play/Pause on Scroll
-const observerOptions = {
-  root: document.querySelector('.video-feed-container'), // Observes within scroll container
-  threshold: 0.6 // Video must be 60% visible to trigger play
-};
+  // ==========================================================================
+  // 1. AUTOPLAY & PAUSE ON SCROLL (Intersection Observer)
+  // ==========================================================================
+  // Plays the video currently in view and pauses all off-screen videos.
+  const observerOptions = {
+    root: document.querySelector(".reels-container"),
+    threshold: 0.8, // Trigger when 80% of the video is visible
+  };
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const video = entry.target;
-    const playBtnIcon = video.closest('.reel').querySelector('.play-pause-btn span');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target.querySelector(".reel-video");
 
-    if (entry.isIntersecting) {
-      // Try to auto-play (must be muted due to browser policy)
-      video.play()
-        .then(() => {
-          playBtnIcon.textContent = 'pause';
-        })
-        .catch(err => {
-          console.log("Autoplay failed/blocked by browser. Waiting for interaction.", err);
-          playBtnIcon.textContent = 'play_arrow';
+      if (entry.isIntersecting) {
+        video.play().catch(() => {
+          // Autoplay blocked handling: keeps video muted to ensure play works
+          video.muted = true;
+          video.play();
         });
-    } else {
-      video.pause();
-      playBtnIcon.textContent = 'play_arrow';
-    }
-  });
-}, observerOptions);
-
-// Attach observer to each video
-videos.forEach(video => {
-  observer.observe(video);
-});
-
-
-// 2. Play/Pause Manual Click Button Toggle
-function togglePlay(button) {
-  const reel = button.closest('.reel');
-  const video = reel.querySelector('.reel-video');
-  const icon = button.querySelector('.material-symbols-outlined');
-
-  if (video.paused) {
-    // Optional: Pause all other active reels first
-    videos.forEach(v => {
-      if (v !== video) v.pause();
+      } else {
+        video.pause();
+        video.currentTime = 0; // Reset video position when scrolled past
+      }
     });
-    
-    video.play()
-      .then(() => {
-        icon.textContent = 'pause';
-      })
-      .catch(err => console.log("Play failed: ", err));
-  } else {
-    video.pause();
-    icon.textContent = 'play_arrow';
-  }
-}
+  }, observerOptions);
 
+  reels.forEach((reel) => observer.observe(reel));
 
-// 3. User Actions (Like/Share Demonstration)
-function handleLike(btn) {
-  const icon = btn.querySelector('.material-symbols-outlined');
-  const textVal = btn.querySelector('.action-text');
-  
-  if (btn.classList.contains('liked')) {
-    btn.classList.remove('liked');
-    icon.style.color = '#fff';
-    // Dummy decrement logic
-    textVal.textContent = (parseFloat(textVal.textContent) - 0.1).toFixed(1) + 'K';
-  } else {
-    btn.classList.add('liked');
-    icon.style.color = '#ff2b55'; // Heart red color
-    // Dummy increment logic
-    textVal.textContent = (parseFloat(textVal.textContent) + 0.1).toFixed(1) + 'K';
-  }
-}
+  // ==========================================================================
+  // 2. TAP VIDEO TO MUTE / UNMUTE
+  // ==========================================================================
+  reels.forEach((reel) => {
+    const video = reel.querySelector(".reel-video");
 
-function handleShare() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'Check out this Reel!',
-      url: window.location.href
-    }).catch(console.error);
-  } else {
-    alert("Share functionality copied to clipboard!");
+    video.addEventListener("click", () => {
+      video.muted = !video.muted;
+      showMuteIndicator(reel, video.muted);
+    });
+  });
+
+  // Brief visual feedback when muting/unmuting
+  function showMuteIndicator(reel, isMuted) {
+    const iconName = isMuted ? "volume-x" : "volume-2";
+    const indicator = document.createElement("div");
+    indicator.className = "mute-indicator";
+    indicator.innerHTML = `<i data-feather="${iconName}"></i>`;
+
+    reel.appendChild(indicator);
+    feather.replace();
+
+    // Trigger animation then remove
+    requestAnimationFrame(() => indicator.classList.add("active"));
+    setTimeout(() => {
+      indicator.classList.remove("active");
+      setTimeout(() => indicator.remove(), 200);
+    }, 600);
   }
-}
+
+  // ==========================================================================
+  // 3. INTERACTIVE LIKE BUTTON & DOUBLE-TAP TO LIKE
+  // ==========================================================================
+  reels.forEach((reel) => {
+    const likeBtn = reel.querySelector('.action-btn:has([data-feather="heart"])');
+    const video = reel.querySelector(".reel-video");
+    let lastTap = 0;
+
+    // Click on side like button
+    if (likeBtn) {
+      likeBtn.addEventListener("click", () => toggleLike(likeBtn));
+    }
+
+    // Double tap on video screen to like
+    video.addEventListener("touchend", (e) => {
+      const currentTime = new Date().getTime();
+      const tapLength = currentTime - lastTap;
+
+      if (tapLength < 300 && tapLength > 0) {
+        e.preventDefault(); // Prevent default double-tap zoom
+        if (likeBtn && !likeBtn.classList.contains("liked")) {
+          toggleLike(likeBtn);
+        }
+        createHeartBurst(reel, e.changedTouches[0]);
+      }
+      lastTap = currentTime;
+    });
+  });
+
+  function toggleLike(likeBtn) {
+    const isLiked = likeBtn.classList.toggle("liked");
+    const countSpan = likeBtn.querySelector("span");
+
+    // Toggle color style directly or via class
+    likeBtn.style.color = isLiked ? "#ff3040" : "#ffffff";
+
+    // Optional: simple counter increment logic demo
+    if (countSpan && !isNaN(parseFloat(countSpan.innerText))) {
+      let currentVal = parseFloat(countSpan.innerText);
+      countSpan.innerText = isLiked ? (currentVal + 0.1).toFixed(1) + "K" : (currentVal - 0.1).toFixed(1) + "K";
+    }
+  }
+
+  // Floating heart effect on double tap
+  function createHeartBurst(reel, touchLocation) {
+    const heart = document.createElement("div");
+    heart.className = "double-tap-heart";
+    heart.innerHTML = `<i data-feather="heart"></i>`;
+
+    // Position heart at tap location relative to the reel
+    const rect = reel.getBoundingClientRect();
+    const x = touchLocation.clientX - rect.left;
+    const y = touchLocation.clientY - rect.top;
+
+    heart.style.left = `${x}px`;
+    heart.style.top = `${y}px`;
+
+    reel.appendChild(heart);
+    feather.replace();
+
+    setTimeout(() => heart.remove(), 800);
+  }
+});
