@@ -19,6 +19,23 @@ body {
   overflow: hidden; 
 }
 
+*============================================================================
+  NAVIGATION BAR
+==============================================================================*/
+.navbar{
+  display: flex;
+  position: fixed;
+  top: 0;
+  padding: 8px;
+  background-color: green;
+}
+.navbar a{
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-weight: 800;
+}
+
 /* ==========================================================================
    2. REELS CONTAINER (SNAP SCROLLING & RESPONSIVENESS)
    ========================================================================== */
