@@ -13,85 +13,52 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-left">
-            <h1>OpenFeed</h1>
-            <input class="searchBar" type="text" placeholder="Search...">
-        </div>
-        <ul class="nav-links">
-            <li class="nav-item">
-                <a href="index.html" class="nav-link active">
-                    <span class="material-icons">home</span>
-                </a>
-            </li>                                                                                                                                                                                                                                                                                                                                                                                                                           
-            <li class="nav-item">
-                <a href="videos.html" class="nav-link">
-                    <span class="material-icons">play_circle</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="market.html" class="nav-link">
-                    <span class="material-icons">shopping_cart</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="message.html" class="nav-link">
-                    <span class="material-icons">message</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="notification.html" class="nav-link">
-                    <span class="material-icons">notifications</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="person.html" class="nav-link">
-                    <span class="material-icons">person</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <!-- Main Chat Workspace Container -->
+    <div class="chat-container">
 
-  <main>
-    <div class="messenger-container">
- 
-  <div class="conversations-sidebar">
-    <div class="sidebar-header">
-      <h2>Chats</h2>
-    </div>
-    <div class="conversation-list">
-      <div class="conversation active" onclick="switchChat('Benny Musonda', 'Hey! How are you?')">
-        <img src="imgs/Profile-Picture.jpg" alt="User">
-        <div class="chat-preview">
-          <h4>Benny Musonda</h4>
-          <p>Hey! How are you?</p>
+        <!-- Left Sidebar: Users List -->
+        <div class="chat-sidebar">
+            <div class="sidebar-header">Chats</div>
+            <div class="user-list" id="userList">
+                <!-- JavaScript will inject users here dynamically -->
+            </div>
         </div>
-      </div>
-      <div class="conversation" onclick="switchChat('Francisco Musonda', 'See you tomorrow!')">
-        <img src="imgs/Friend-Picture.jpg" alt="User">
-        <div class="chat-preview">
-          <h4>Francisco Musonda</h4>
-          <p>See you tomorrow!</p>
+
+        <!-- Right Main Box: Active Chat Screen -->
+        <div class="chat-window">
+            
+            <!-- Default screen before clicking a user -->
+            <div class="chat-placeholder" id="chatPlaceholder">
+                <h2>Select a chat to start messaging</h2>
+            </div>
+
+            <!-- Active Conversation Area (switched on by JS) -->
+            <div class="chat-active-box" id="chatActiveBox">
+                
+                <!-- Header displaying current user chat -->
+                <div class="chat-header">
+                    <div class="user-avatar" id="activeAvatar">?</div>
+                    <div class="user-name" id="activeName">User Name</div>
+                </div>
+
+                <!-- Scrollable screen for message bubbles -->
+                <div class="chat-messages" id="chatMessages">
+                    <!-- JavaScript will inject message bubbles here -->
+                </div>
+
+                <!-- Form to type and send messages -->
+                <div class="chat-input-area">
+                    <input type="text" id="messageInput" class="chat-input" placeholder="Type a message..." autocomplete="off">
+                    <button id="sendBtn" class="send-btn">Send</button>
+                </div>
+
+            </div>
         </div>
-      </div>
+
     </div>
-  </div>
-         
-  <div class="chat-window">
-    <div class="chat-header">
-      <h3 id="active-chat-name">Benny Musonda</h3>
-    </div>
-    <div class="chat-messages" id="chat-messages-box">
-      <div class="message received">Hey! How are you?</div>
-      <div class="message sent">I am doing great, thanks!</div>
-    </div>
-    <div class="chat-input-area">
-      <input type="text" id="message-input" placeholder="Aa" onkeypress="checkSend(event)">
-      <button onclick="sendMessage()">Send</button>
-    </div>
-  </div>
-</div>
-  </main>
+
+    
+  
 
    <script src="message.js" defer></script>
 </body>
