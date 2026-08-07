@@ -1,216 +1,187 @@
-/* --- GLOBAL STYLES --- */
-body {
-    background: #f0f2f5;
-    font-family: 'Roboto', Arial, sans-serif;
-    margin: 0;
-    color: #1c1e21;
-}
+/* --- CSS STYLING (The Look and Layout) --- */
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-.main-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 0 10px;
-}
+        /* Container holds the sidebar and chat window side-by-side */
+        .chat-container {
+            display: flex;
+            width: 100%;
+            height: 100vh; /* Takes full height of the viewport */
+            background-color: #f0f2f5; /* Facebook-like light gray background */
+        }
 
-/* --- NAVIGATION BAR --- */
-.navbar {
-    align-items: center;
-    background: #02a172;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 16px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+        /* --- SIDEBAR: Left column for user list --- */
+        .chat-sidebar {
+            width: 360px;
+            background-color: #ffffff;
+            border-right: 1px solid #e4e6eb;
+            display: flex;
+            flex-direction: column;
+        }
 
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        .sidebar-header {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #050505;
+            border-bottom: 1px solid #e4e6eb;
+        }
 
-.navbar h1 {
-    font-size: 24px;
-    margin: 0;
-    letter-spacing: -0.5px;
-}
+        .user-list {
+            flex: 1;
+            overflow-y: auto; /* Adds a scrollbar if you have many users */
+        }
 
-.searchBar {
-    border: none;
-    border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 8px 16px;
-    width: 180px;
-    color: white;
-    outline: none;
-    transition: background-color 0.2s;
-}
+        /* Individual user item in the list */
+        .user-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
 
-.searchBar::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
+        /* Hover effect when mouse is over a user */
+        .user-item:hover {
+            background-color: #f2f2f2;
+        }
 
-.searchBar:focus {
-    background-color: rgba(255, 255, 255, 0.3);
-}
+        /* Visual indicator for the currently selected user */
+        .user-item.active {
+            background-color: #e7f3ff;
+        }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    gap: 8px;
-}
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%; /* Makes the profile picture a circle */
+            background-color: #1877f2; /* Facebook blue */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 12px;
+        }
 
-.nav-item {
-    width: 50px;
-    height: 45px;
-}
+        .user-info {
+            flex: 1;
+        }
 
-.nav-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.2s ease;
-}
+        .user-name {
+            font-weight: 600;
+            color: #050505;
+            margin-bottom: 4px;
+        }
 
-.nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-}
+        /* --- MAIN CHAT WINDOW: Right column --- */
+        .chat-window {
+            flex: 1; /* Takes up all remaining horizontal space */
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+        }
 
-.nav-link.active .material-icons {
-    color: #ffffff;
-}
+        /* Placeholder shown before a user is selected */
+        .chat-placeholder {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #65676b;
+        }
 
-.nav-link .material-icons {
-    font-size: 28px;
-    color: rgba(255, 255, 255, 0.75);
-    transition: color 0.2s ease;
-}
+        /* Active chat layout (hidden by default using display: none) */
+        .chat-active-box {
+            display: none; 
+            flex-direction: column;
+            height: 100%;
+        }
 
+        /* Chat header showing current partner's name */
+        .chat-header {
+            padding: 16px;
+            border-bottom: 1px solid #e4e6eb;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
 
-.messenger-container {
-  display: flex;
-  height: calc(100vh - 60px); /* Adjust based on nav height */
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-}
-.conversations-sidebar {
-  width: 320px;
-  border-right: 1px solid #e4e6eb;
-  overflow-y: auto;
-}
-.sidebar-header {
-  padding: 16px;
-}
-.conversation {
-  display: flex;
-  align-items: center;
-  padding: 10px 16px;
-  cursor: pointer;
-}
-.conversation:hover, .conversation.active {
-  background-color: #f2f3f5;
-}
-.conversation img {
-  border-radius: 50%;
-  margin-right: 12px;
-  object-fit: cover;
-  width: 50px;
-  height: 50px;
-}
-.chat-preview h4 {
-  margin: 0;
-  font-size: 15px;
-}
-.chat-preview p {
-  margin: 4px 0 0 0;
-  font-size: 13px;
-  color: #65676b;
-}
-.chat-window {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.chat-header {
-  padding: 16px;
-  border-bottom: 1px solid #e4e6eb;
-  font-weight: bold;
-}
-.chat-messages {
-  flex: 1;
-  padding: 16px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background-color: #f9f9f9;
-}
-.message {
-  max-width: 60%;
-  padding: 10px 14px;
-  border-radius: 18px;
-  font-size: 14px;
-}
-.message.received {
-  background-color: #e4e6eb;
-  align-self: flex-start;
-}
-.message.sent {
-  background-color: #02a172;
-  color: white;
-  align-self: flex-end;
-}
-.chat-input-area {
-  display: flex;
-  padding: 12px;
-  border-top: 1px solid #e4e6eb;
-  gap: 8px;
-}
-.chat-input-area input {
-  flex: 1;
-  padding: 10px 14px;
-  border-radius: 20px;
-  border: 1px solid #e4e6eb;
-  background-color: #f0f2f5;
-  outline: none;
-}
-.chat-input-area button {
-  background-color: #0084ff;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-}
+        /* Area where message bubbles appear */
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto; /* Allows scrolling through messages */
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* Adds space between message bubbles */
+        }
 
+        /* Base styles for all message bubbles */
+        .message {
+            max-width: 60%;
+            padding: 8px 12px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
 
-/* --- MEDIA QUERIES --- */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px;
-    }
-    
-    .nav-left {
-        width: 100%;
-        justify-content: space-between;
-    }
+        /* Messages sent by you (the logged-in user) */
+        .message.sent {
+            align-self: flex-end; /* Pushes bubble to the right */
+            background-color: #0084ff; /* Facebook blue bubble */
+            color: white;
+        }
 
-    .searchBar {
-        width: 60%;
-    }
+        /* Messages received from the friend */
+        .message.received {
+            align-self: flex-start; /* Pushes bubble to the left */
+            background-color: #e4e6eb; /* Light gray bubble */
+            color: black;
+        }
 
-    .nav-links {
-        width: 100%;
-        justify-content: space-around;
-    }
-}
+        /* --- INPUT AREA: Bottom bar for typing --- */
+        .chat-input-area {
+            padding: 16px;
+            border-top: 1px solid #e4e6eb;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background-color: #f0f2f5;
+            border-radius: 20px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .chat-input:focus {
+            background-color: #e4e6eb; /* Darkens slightly on click */
+        }
+
+        .send-btn {
+            background: none;
+            border: none;
+            color: #0084ff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .send-btn:hover {
+            text-decoration: underline;
+        }
