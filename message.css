@@ -1,4 +1,87 @@
 /* --- CSS STYLING (The Look and Layout) --- */
+
+/* --- NAVIGATION BAR --- */
+.navbar {
+    align-items: center;
+    background: #02a172;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar h1 {
+    font-size: 24px;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.searchBar {
+    border: none;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    width: 180px;
+    color: white;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.searchBar::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.searchBar:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+}
+
+.nav-item {
+    width: 50px;
+    height: 45px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link.active .material-icons {
+    color: #ffffff;
+}
+
+.nav-link .material-icons {
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.2s ease;
+}
+
         
         * {
             box-sizing: border-box;
