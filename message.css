@@ -101,7 +101,7 @@
 
 
         /* Main Layout */
-        .instagram-dm-container {
+        .dm-container {
             display: flex;
             width: 100%;
             max-width: 935px;
