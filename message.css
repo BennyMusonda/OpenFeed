@@ -1,5 +1,21 @@
 /* --- CSS STYLING (The Look and Layout) --- */
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
 /* --- NAVIGATION BAR --- */
 .navbar {
     align-items: center;
@@ -82,189 +98,202 @@
     transition: color 0.2s ease;
 }
 
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
 
-        /* Container holds the sidebar and chat window side-by-side */
-        .chat-container {
+
+        /* Main Layout */
+        .instagram-dm-container {
             display: flex;
             width: 100%;
-            height: 100vh; /* Takes full height of the viewport */
-            background-color: #f0f2f5; /* Facebook-like light gray background */
+            max-width: 935px;
+            height: 85vh;
+            border: 1px solid #262626;
+            background-color: #000000;
+            border-radius: 4px;
+            overflow: hidden;
         }
 
-        /* --- SIDEBAR: Left column for user list --- */
-        .chat-sidebar {
-            width: 360px;
-            background-color: #ffffff;
-            border-right: 1px solid #e4e6eb;
+        /* Left Sidebar: Chat List */
+        .sidebar {
+            width: 350px;
+            border-right: 1px solid #262626;
             display: flex;
             flex-direction: column;
         }
 
         .sidebar-header {
             padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #050505;
-            border-bottom: 1px solid #e4e6eb;
+            border-bottom: 1px solid #262626;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
         }
 
-        .user-list {
+        .chat-list {
             flex: 1;
-            overflow-y: auto; /* Adds a scrollbar if you have many users */
+            overflow-y: auto;
         }
 
-        /* Individual user item in the list */
-        .user-item {
+        .chat-user-item {
             display: flex;
             align-items: center;
-            padding: 12px 16px;
+            padding: 12px 20px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s ease;
         }
 
-        /* Hover effect when mouse is over a user */
-        .user-item:hover {
-            background-color: #f2f2f2;
+        .chat-user-item:hover {
+            background-color: #121212;
         }
 
-        /* Visual indicator for the currently selected user */
-        .user-item.active {
-            background-color: #e7f3ff;
+        .chat-user-item.active {
+            background-color: #262626;
         }
 
-        .user-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%; /* Makes the profile picture a circle */
-            background-color: #1877f2; /* Facebook blue */
-            color: white;
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #555;
+            margin-right: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 18px;
-            margin-right: 12px;
+            color: #fff;
+            text-transform: uppercase;
         }
 
         .user-info {
-            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .user-name {
+        .username {
             font-weight: 600;
-            color: #050505;
+            font-size: 14px;
             margin-bottom: 4px;
         }
 
-        /* --- MAIN CHAT WINDOW: Right column --- */
-        .chat-window {
-            flex: 1; /* Takes up all remaining horizontal space */
-            display: flex;
-            flex-direction: column;
-            background-color: #ffffff;
+        .last-message {
+            font-size: 12px;
+            color: #a8a8a8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 220px;
         }
 
-        /* Placeholder shown before a user is selected */
-        .chat-placeholder {
+        /* Right Section: Chat Window */
+        .chat-window {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #000000;
+        }
+
+        /* Empty State */
+        .empty-state {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #65676b;
-        }
-
-        /* Active chat layout (hidden by default using display: none) */
-        .chat-active-box {
-            display: none; 
-            flex-direction: column;
             height: 100%;
+            color: #a8a8a8;
+            text-align: center;
         }
 
-        /* Chat header showing current partner's name */
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        /* Active Chat Components */
         .chat-header {
-            padding: 16px;
-            border-bottom: 1px solid #e4e6eb;
+            padding: 15px 20px;
+            border-bottom: 1px solid #262626;
             display: flex;
             align-items: center;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
-        /* Area where message bubbles appear */
-        .chat-messages {
+        .chat-header .avatar {
+            width: 40px;
+            height: 40px;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+
+        .chat-header .username {
+            margin-bottom: 0;
+        }
+
+        .messages-area {
             flex: 1;
-            padding: 16px;
-            overflow-y: auto; /* Allows scrolling through messages */
-            background-color: #ffffff;
+            padding: 20px;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 8px; /* Adds space between message bubbles */
+            gap: 8px;
         }
 
-        /* Base styles for all message bubbles */
+        /* Message Bubbles */
         .message {
             max-width: 60%;
-            padding: 8px 12px;
-            border-radius: 18px;
-            font-size: 15px;
+            padding: 12px 16px;
+            border-radius: 22px;
+            font-size: 14px;
             line-height: 1.4;
             word-wrap: break-word;
         }
 
-        /* Messages sent by you (the logged-in user) */
-        .message.sent {
-            align-self: flex-end; /* Pushes bubble to the right */
-            background-color: #0084ff; /* Facebook blue bubble */
-            color: white;
+        .message.incoming {
+            background-color: #262626;
+            color: #ffffff;
+            align-self: flex-start;
         }
 
-        /* Messages received from the friend */
-        .message.received {
-            align-self: flex-start; /* Pushes bubble to the left */
-            background-color: #e4e6eb; /* Light gray bubble */
-            color: black;
+        .message.outgoing {
+            background-color: #3797f0;
+            color: #ffffff;
+            align-self: flex-end;
         }
 
-        /* --- INPUT AREA: Bottom bar for typing --- */
-        .chat-input-area {
-            padding: 16px;
-            border-top: 1px solid #e4e6eb;
+        /* Input Bar */
+        .input-area {
+            padding: 20px;
+        }
+
+        .input-box-wrapper {
             display: flex;
             align-items: center;
-            gap: 12px;
+            border: 1px solid #262626;
+            border-radius: 22px;
+            padding: 10px 16px;
         }
 
-        .chat-input {
+        .input-box-wrapper input {
             flex: 1;
-            padding: 10px 16px;
+            background: none;
             border: none;
-            background-color: #f0f2f5;
-            border-radius: 20px;
-            font-size: 15px;
+            color: #ffffff;
+            font-size: 14px;
             outline: none;
         }
 
-        .chat-input:focus {
-            background-color: #e4e6eb; /* Darkens slightly on click */
+        .input-box-wrapper input::placeholder {
+            color: #727272;
         }
 
         .send-btn {
             background: none;
             border: none;
-            color: #0084ff;
-            font-size: 16px;
-            font-weight: bold;
+            color: #0095f6;
+            font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            padding: 4px 8px;
+            padding-left: 10px;
         }
 
         .send-btn:hover {
-            text-decoration: underline;
+            color: #ffffff;
         }
