@@ -53,53 +53,26 @@
     </nav>
 
 
-    <!-- Main Chat Workspace Container -->
-    <div class="chat-container">
-
-        <!-- Left Sidebar: Users List -->
-        <div class="chat-sidebar">
-            <div class="sidebar-header">Chats</div>
-            <div class="user-list" id="userList">
-                <!-- JavaScript will inject users here dynamically -->
+ <div class="dm-container">
+        <!-- Sidebar containing user chat lists -->
+        <div class="sidebar">
+            <div class="sidebar-header">Direct Messages</div>
+            <div class="chat-list" id="chatList">
+                <!-- User items dynamically rendered via JavaScript -->
             </div>
         </div>
 
-        <!-- Right Main Box: Active Chat Screen -->
-        <div class="chat-window">
-            
-            <!-- Default screen before clicking a user -->
-            <div class="chat-placeholder" id="chatPlaceholder">
-                <h2>Select a chat to start messaging</h2>
-            </div>
-
-            <!-- Active Conversation Area (switched on by JS) -->
-            <div class="chat-active-box" id="chatActiveBox">
-                
-                <!-- Header displaying current user chat -->
-                <div class="chat-header">
-                    <div class="user-avatar" id="activeAvatar">?</div>
-                    <div class="user-name" id="activeName">User Name</div>
-                </div>
-
-                <!-- Scrollable screen for message bubbles -->
-                <div class="chat-messages" id="chatMessages">
-                    <!-- JavaScript will inject message bubbles here -->
-                </div>
-
-                <!-- Form to type and send messages -->
-                <div class="chat-input-area">
-                    <input type="text" id="messageInput" class="chat-input" placeholder="Type a message..." autocomplete="off">
-                    <button id="sendBtn" class="send-btn">Send</button>
-                </div>
-
+        <!-- Chat View Window Component -->
+        <div class="chat-window" id="chatWindow">
+            <div class="empty-state">
+                <div class="empty-state-icon">💬</div>
+                <h3>Your Messages</h3>
+                <p>Send private photos and messages to a friend.</p>
             </div>
         </div>
-
     </div>
-
     
   
-
    <script src="message.js" defer></script>
 </body>
 </html>
