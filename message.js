@@ -1,63 +1,92 @@
-// 1. MOCK DATA: Simulating a database of friends and existing chat histories
-        const usersData = [
-            {
-                id: 1,
-                name: "Alice Johnson",
-                initials: "AJ",
+ // Mock Database of users and message histories
+        const chatData = {
+            1: {
+                username: "alex_travels",
+                color: "#ff85a2",
                 messages: [
-                    { text: "Hey! Are we still meeting up today?", type: "received" },
-                    { text: "Yes! See you at 5 PM.", type: "sent" }
+                    { text: "Hey! Did you check out those photos?", type: "incoming" },
+                    { text: "Yeah, they look absolutely incredible!", type: "outgoing" },
+                    { text: "Thanks! I'll post them later tonight.", type: "incoming" }
                 ]
             },
-            {
-                id: 2,
-                name: "Bob Smith",
-                initials: "BS",
+            2: {
+                username: "design_studio",
+                color: "#a063e4",
                 messages: [
-                    { text: "Did you finish working on that social site design?", type: "received" }
+                    { text: "Is the design concept ready?", type: "incoming" },
+                    { text: "Almost, just finishing the UI revisions.", type: "outgoing" }
                 ]
             },
-            {
-                id: 3,
-                name: "Charlie Brown",
-                initials: "CB",
-                messages: [] // Fresh clean chat history
+            3: {
+                username: "chef_marcel",
+                color: "#3ddc84",
+                messages: [
+                    { text: "Don't forget the dinner reservations at 8.", type: "incoming" }
+                ]
             }
-        ];
+        };
 
-        // 2. Track which user is currently selected (starts as null/none)
-        let activeUserId = null;
+        const chatListContainer = document.getElementById("chatList");
+        const chatWindowContainer = document.getElementById("chatWindow");
+        let activeChatId = null;
 
-        // 3. DOM ELEMENTS: Grab the HTML parts we need to interact with
-        const userListContainer = document.getElementById('userList');
-        const chatPlaceholder = document.getElementById('chatPlaceholder');
-        const chatActiveBox = document.getElementById('chatActiveBox');
-        const activeAvatar = document.getElementById('activeAvatar');
-        const activeName = document.getElementById('activeName');
-        const chatMessagesContainer = document.getElementById('chatMessages');
-        const messageInput = document.getElementById('messageInput');
-        const sendBtn = document.getElementById('sendBtn');
-
-        // 4. FUNCTION: Render/Build the user list on the left sidebar
-        function renderUserList() {
-            // Clear out any old content inside the sidebar
-            userListContainer.innerHTML = '';
-
-            // Loop through each user inside our array
-            usersData.forEach(user => {
-                // Create a clickable div block for the user
-                const userItem = document.createElement('div');
-                userItem.className = 'user-item';
+        // Initialize user sidebar list
+        function renderSidebar() {
+            chatListContainer.innerHTML = "";
+            Object.keys(chatData).forEach(id => {
+                const chat = chatData[id];
+                const lastMsg = chat.messages[chat.messages.length - 1]?.text || "No messages yet";
                 
-                // If this user is the active one, add the 'active' highlight CSS style
-                if (user.id === activeUserId) {
-                    userItem.classList.add('active');
-                }
+                const userItem = document.createElement("div");
+                userItem.className = `chat-user-item ${activeChatId == id ? 'active' : ''}`;
+                userItem.onclick = () => selectChat(id);
 
-                // Construct the interior HTML layout for a single user row
                 userItem.innerHTML = `
-                    <div class="user-avatar">${user.initials}</div>
+                    <div class="avatar" style="background-color: ${chat.color}">
+                        ${chat.username.charAt(0)}
+                    </div>
                     <div class="user-info">
-                        <div class="user-name">${user.name}</div>
+                        <div class="username">${chat.username}</div>
+                        <div class="last-message">${lastMsg}</div>
                     </div>
                 `;
+                chatListContainer.appendChild(userItem);
+            });
+        }
+
+        // Open specific user chat window 
+        function selectChat(id) {
+            activeChatId = id;
+            renderSidebar(); // refresh selection styling
+            
+            const chat = chatData[id];
+            
+            chatWindowContainer.innerHTML = `
+                <div class="chat-header">
+                    <div class="avatar" style="background-color: ${chat.color}">${chat.username.charAt(0)}</div>
+                    <div class="username">${chat.username}</div>
+                </div>
+                <div class="messages-area" id="messagesArea"></div>
+                <div class="input-area">
+                    <div class="input-box-wrapper">
+                        <input type="text" id="messageInput" placeholder="Message..." onkeydown="handleKeyPress(event)">
+                        <button class="send-btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            `;
+            
+            renderMessages();
+        }
+
+        // Populate active message bubbles
+        function renderMessages() {
+            const messagesArea = document.getElementById("messagesArea");
+            if (!messagesArea || !activeChatId) return;
+
+            messagesArea.innerHTML = "";
+            chatData[activeChatId].messages.forEach(msg => {
+                const msgBubble = document.createElement("div");
+                msgBubble.className = `message ${msg.type}`;
+                msgBubble.innerText = msg.text;
+                messagesArea.appendChild(msgBubble);
+            });
