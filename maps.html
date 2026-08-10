@@ -1,8 +1,83 @@
-.map-container {
-  width: 100%;
-  max-width: 1200px; /* Adjust maximum width to fit your layout */
-  margin: 20px auto; /* Centers the map container */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adds a subtle drop shadow */
-  border-radius: 8px; /* Smooth rounded corners */
-  overflow: hidden; /* Ensures the map follows the border radius */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenFeed</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1>OpenFeed</h1>
+            <input class="searchBar" type="text" placeholder="Search...">
+        </div>
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link active">
+                    <span class="material-icons">home</span>
+                </a>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                           
+            <li class="nav-item">
+                <a href="videos.html" class="nav-link">
+                    <span class="material-icons">play_circle</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="market.html" class="nav-link">
+                    <span class="material-icons">shopping_cart</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="message.html" class="nav-link">
+                    <span class="material-icons">message</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="notification.html" class="nav-link">
+                    <span class="material-icons">notifications</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="person.html" class="nav-link">
+                    <span class="material-icons">person</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+<div class="map-container">
+    <div class="embed-map-fixed">
+        <div class="embed-map-container">
+            <iframe class="embed-map-frame" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&height=400&hl=en&q=zambia&t=&z=8&ie=UTF8&iwloc=B&output=embed"></iframe>
+            <a href="https://classicjoy.games" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:1px;overflow:hidden">Emulator Games</a></div>
+            
+            <style>
+            .embed-map-fixed{position:relative;
+            text-align:right;
+            width:600px;
+            height:400px;
+            }
+            .embed-map-container{
+                overflow:hidden;
+                background:none!important;
+                width:600px;height:400px;
+                }.embed-map-frame{
+                    width:600px!important;
+                    height:400px!important;
+                    }
+                    </style>
+                    </div>
+</div>
+
+  <script src="maps.js" defer></script>
+</body>
+</html>
