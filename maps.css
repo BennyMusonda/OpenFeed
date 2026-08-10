@@ -9,35 +9,11 @@ body {
   overflow: hidden;
 }
 
-.globe-container {
-  position: relative;
-  width: 300px;
-  height: 300px;
-}
-
-#earth {
+.map-container {
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  /* A seamless flat world map asset */
-  background: url('https://wikimedia.org') repeat-x;
-  background-size: cover;
-  /* Matches the flat texture aspect width for smooth, seamless wrapping */
-  background-position: 0 0; 
-  box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.8), 
-              inset -20px 0 50px rgba(255, 255, 255, 0.1);
-  transition: transform 0.1s linear;
-}
-
-/* Adds a realistic, 3D atmospheric lighting overlay */
-.atmosphere {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  pointer-events: none; /* Allows mouse drags to pass straight to the earth element */
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.9) 100%);
-  box-shadow: 0 0 40px rgba(75, 140, 255, 0.3); /* Blue planet glow */
+  max-width: 1200px; /* Adjust maximum width to fit your layout */
+  margin: 20px auto; /* Centers the map container */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adds a subtle drop shadow */
+  border-radius: 8px; /* Smooth rounded corners */
+  overflow: hidden; /* Ensures the map follows the border radius */
 }
