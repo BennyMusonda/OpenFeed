@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notifications</title>
+    <title>Notifications - OpenFeed</title>
+    
+    <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="notification.css">
 
+    <!-- External Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 <body>
 
+    <!-- Main Navigation Bar -->
     <nav class="navbar">
         <div class="nav-left">
-            <h1>OpenFeed</h1>
+            <h1 class="logo">Open<span>Feed</span></h1>
             <input class="searchBar" type="text" placeholder="Search...">
         </div>
         <ul class="nav-links">
             <li class="nav-item">
-                <a href="index.html" class="nav-link active">
+                <a href="index.html" class="nav-link">
                     <span class="material-icons">home</span>
                 </a>
-            </li>                                                                                                                                                                                                                                                                                                                                                                                                                           
+            </li>
             <li class="nav-item">
                 <a href="videos.html" class="nav-link">
                     <span class="material-icons">play_circle</span>
@@ -41,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="notification.html" class="nav-link">
+                <a href="notification.html" class="nav-link active">
                     <span class="material-icons">notifications</span>
                 </a>
             </li>
@@ -53,82 +57,92 @@
         </ul>
     </nav>
 
-  <div class="notification-container">
-  <!-- Header -->
-  <div class="notification-header">
-    <h2>Notifications</h2>
-    <button class="mark-all-btn" id="markAllRead">Mark all as read</button>
-  </div>
-
-  <!-- Filter Tabs -->
-  <div class="notification-tabs">
-    <button class="tab-btn active" data-filter="all">All</button>
-    <button class="tab-btn" data-filter="unread">Unread</button>
-  </div>
-
-  <!-- Notification List -->
-  <ul class="notification-list" id="notificationList">
-    <!-- Unread Notification Item -->
-    <li class="notification-item unread" data-id="1">
-      <div class="avatar-container">
-        <img src="Friend-Picture2.jpg" alt="User avatar" class="user-avatar">
-        <div class="badge-icon comment-badge">💬</div>
-      </div>
-      <div class="notification-content">
-        <p class="notification-text"><strong>Sarah Jenkins</strong> commented on your post: "This looks amazing!"</p>
-        <span class="notification-time">2 mins ago</span>
-      </div>
-      <div class="notification-actions">
-        <button class="menu-trigger">•••</button>
-        <div class="action-dropdown hidden">
-          <button class="toggle-read-btn">Mark as read</button>
-          <button class="delete-btn">Remove notification</button>
+    <!-- Main Content Body -->
+    <main class="notification-container">
+        <!-- Header -->
+        <div class="notification-header">
+            <h2>Notifications</h2>
+            <button class="mark-all-btn" id="markAllRead">Mark all as read</button>
         </div>
-      </div>
-      <div class="unread-dot"></div>
-    </li>
 
-    <!-- Read Notification Item -->
-    <li class="notification-item" data-id="2">
-      <div class="avatar-container">
-        <img src="Friend-Picture.jpg" alt="User avatar" class="user-avatar">
-        <div class="badge-icon like-badge">👍</div>
-      </div>
-      <div class="notification-content">
-        <p class="notification-text"><strong>Alex Rivera</strong> and 5 others liked your photo.</p>
-        <span class="notification-time">2 hours ago</span>
-      </div>
-      <div class="notification-actions">
-        <button class="menu-trigger">•••</button>
-        <div class="action-dropdown hidden">
-          <button class="toggle-read-btn">Mark as unread</button>
-          <button class="delete-btn">Remove notification</button>
+        <!-- Filter Tabs -->
+        <div class="notification-tabs">
+            <button class="tab-btn active" data-filter="all">All</button>
+            <button class="tab-btn" data-filter="unread">Unread</button>
         </div>
-      </div>
-      <div class="unread-dot"></div>
-    </li>
 
-    <!-- Unread Friend Request Item -->
-    <li class="notification-item unread" data-id="3">
-      <div class="avatar-container">
-        <img src="Profile-Picture.jpg" alt="User avatar" class="user-avatar">
-        <div class="badge-icon friend-badge">👤</div>
-      </div>
-      <div class="notification-content">
-        <p class="notification-text"><strong>David Kim</strong> sent you a friend request.</p>
-        <span class="notification-time">Yesterday</span>
-        <div class="inline-actions">
-          <button class="confirm-btn">Confirm</button>
-          <button class="delete-request-btn">Delete</button>
-        </div>
-      </div>
-      <div class="notification-actions">
-        <button class="menu-trigger">•••</button>
-        <div class="action-dropdown hidden">
-          <button class="toggle-read-btn">Mark as read</button>
-          <button class="delete-btn">Remove notification</button>
+        <!-- Notification List -->
+        <ul class="notification-list" id="notificationList">
+            
+            <!-- Item 1: Unread Comment -->
+            <li class="notification-item unread" data-id="1">
+                <div class="avatar-container">
+                    <img src="Friend-Picture2.jpg" alt="Sarah Jenkins" class="user-avatar">
+                    <div class="badge-icon comment-badge">💬</div>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text"><strong>Sarah Jenkins</strong> commented on your post: "This looks amazing!"</p>
+                    <span class="notification-time">2 mins ago</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="menu-trigger" aria-label="Options">•••</button>
+                    <div class="action-dropdown hidden">
+                        <button class="toggle-read-btn">Mark as read</button>
+                        <button class="delete-btn">Remove notification</button>
+                    </div>
+                </div>
+                <div class="unread-dot"></div>
+            </li>
 
-              <footer class="main-footer">
+            <!-- Item 2: Read Likes -->
+            <li class="notification-item" data-id="2">
+                <div class="avatar-container">
+                    <img src="Friend-Picture.jpg" alt="Alex Rivera" class="user-avatar">
+                    <div class="badge-icon like-badge">👍</div>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text"><strong>Alex Rivera</strong> and 5 others liked your photo.</p>
+                    <span class="notification-time">2 hours ago</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="menu-trigger" aria-label="Options">•••</button>
+                    <div class="action-dropdown hidden">
+                        <button class="toggle-read-btn">Mark as unread</button>
+                        <button class="delete-btn">Remove notification</button>
+                    </div>
+                </div>
+                <div class="unread-dot"></div>
+            </li>
+
+            <!-- Item 3: Unread Friend Request -->
+            <li class="notification-item unread" data-id="3">
+                <div class="avatar-container">
+                    <img src="Profile-Picture.jpg" alt="David Kim" class="user-avatar">
+                    <div class="badge-icon friend-badge">👤</div>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text"><strong>David Kim</strong> sent you a friend request.</p>
+                    <span class="notification-time">Yesterday</span>
+                    <div class="inline-actions">
+                        <button class="confirm-btn">Confirm</button>
+                        <button class="delete-request-btn">Delete</button>
+                    </div>
+                </div>
+                <div class="notification-actions">
+                    <button class="menu-trigger" aria-label="Options">•••</button>
+                    <div class="action-dropdown hidden">
+                        <button class="toggle-read-btn">Mark as read</button>
+                        <button class="delete-btn">Remove notification</button>
+                    </div>
+                </div>
+                <div class="unread-dot"></div>
+            </li>
+
+        </ul>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
         <div class="footer-container">
             
             <!-- Column 1: Brand & Newsletter -->
@@ -137,7 +151,7 @@
                 <p class="footer-tagline">Connecting minds, sharing moments, and building digital communities worldwide.</p>
                 <form class="newsletter-form" action="#" method="POST">
                     <input type="email" placeholder="Join our newsletter..." required>
-                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
                 </form>
             </div>
 
@@ -176,7 +190,7 @@
 
         </div>
 
-        <!-- Footer Bottom: Socials and Legal -->
+        <!-- Footer Bottom Section -->
         <div class="footer-bottom">
             <div class="bottom-container">
                 <p class="copyright">&copy; 2026 Open Feed Inc. All rights reserved.</p>
@@ -197,10 +211,8 @@
             </div>
         </div>
     </footer>
-    <!-- END OF FOOTER -->
 
-   <script src="notification.js" defer></script>
+    <!-- JavaScript Script -->
+    <script src="notification.js" defer></script>
 </body>
 </html>
-
-  
